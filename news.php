@@ -1,8 +1,16 @@
 <?php
+
+    if(isset($_GET['category'])){
+        $cat_value = $_GET['category'];
+        
+    }else{
+        $cat_value = "general";
+    }
     $con = mysqli_connect("localhost", "root","pass","articlegame");
     session_start();
+    $type = "type='news'";
 
-    $page_sql = "SELECT COUNT(id) FROM articledata";
+    $page_sql = "SELECT COUNT(id) FROM articledata WHERE $type";
     $page_query = mysqli_query($con,$page_sql);
     $row = mysqli_fetch_row($page_query);
 
@@ -29,7 +37,6 @@
     }else if($pagenum>$last){
         $pagenum = $last;
     }
-
     $limit = 'LIMIT ' . ($pagenum - 1) * $page_rows .',' .$page_rows;
     $sql = "SELECT * FROM articledata ORDER BY id DESC $limit";
 
@@ -43,8 +50,7 @@
     if($last != 1){
             if($pagenum > 1){
                 $previous = $pagenum -1;
-                $newer = 'pagination-new';
-                $new_page = ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Newer articles <span aria-hidden="true">&rarr;</span> ';
+                $new_page = ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?category='.$cat_value.'&pn='.$previous.'">Newer articles <span aria-hidden="true">&rarr;</span> ';
 
             }
 
@@ -54,12 +60,28 @@
         //check if we are not on last page and then generate next
         if($pagenum != $last){
             $next = $pagenum + 1;
-            $older = 'pagination-prev';
 
-            $older_page = ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'"><span aria-hidden="true">&larr;</span>Older articles ';
+
+            $older_page = ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?category='.$cat_value.'&pn='.$next.'"><span aria-hidden="true">&larr;</span>Older articles ';
         }
     }
+
     $list = '';
+    if($cat_value == "Xbox"){
+        $news_title = "Xbox News";
+    }else if($cat_value == "Playstation"){
+        $news_title = "Playstation News";
+    }else if($cat_value == "Nintendo"){
+        $news_title = "Nintendo News";
+    }else if($cat_value == "PC"){
+        $news_title = "PC News";
+    }else if($cat_value == "Mobile"){
+        $news_title = "Mobile Gaming News";
+    }else if($cat_value == "Indie"){
+        $news_title = "Indie Gaming News";
+    }else{
+        $news_title = "News";
+    }
 ?>
 
 <html>
@@ -122,19 +144,19 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li class="nav-item-active">
-                        <a href="#news">News</a>
+                        <a href="news.php">News</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#reviews">Reviews</a>
+                        <a href="reviews.php">Reviews</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#videos">Videos</a>
+                        <a href="videos.php">Videos</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="podcast">Podcast</a>
+                        <a href="podcast.php">Podcast</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#contact">Contact</a>
+                        <a href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -147,14 +169,66 @@
     <!--End of the navigation template for index.php-->
     <section class="content-large">
         <div class="col-sm-12">
-            
+            <nav>
+                <ul class="cat-container">
+                    <li class="cat-nav">
+                        <a href="news.php?category=general">All</a>
+
+                    </li>
+                    <li class="cat-nav">
+                        <a href="news.php?category=Xbox">Xbox</a>
+
+                    </li>
+                    <li class="cat-nav">
+                        <a href="news.php?category=Playstation">Playstation</a>
+  
+                    </li>
+                    <li class="cat-nav">
+                        <a href="news.php?category=Nintendo">Nintendo</a>
+
+                    </li>
+                    <li class="cat-nav">
+                        <a href="news.php?category=PC">PC</a>
+
+                    </li>
+                    <li class="cat-nav">
+                        <a href="news.php?category=Mobile">Mobile</a>
+
+                    </li>
+                    <li class="cat-nav">
+                        <a href="news.php?category=Indie">Indie</a>
+
+                    </li>
+                </ul>
+            </nav>
         </div>
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3 >Recent News</h3>
+                    <h3 ><?php echo $news_title; ?></h3>
                     <?php
-
+                        
+                        if($cat_value == "Xbox"){
+                            $cats = "(category='Xbox' OR category='Xbox One' OR category='Xbox 360')";
+                            $page_query2 = mysqli_query($con,"SELECT * FROM articledata WHERE $cats AND $type ORDER BY id DESC $limit");
+                        }else if($cat_value == "Playstation"){
+                            $cats = "(category='Playstation' OR category='PS2' OR category='PS3' OR category='PS4' OR category='PSP' OR category='PS vita')";
+                            $page_query2 = mysqli_query($con,"SELECT * FROM articledata WHERE $cats AND $type ORDER BY id DESC $limit");
+                        }else if($cat_value == "Nintendo"){
+                            $cats = "(category='Nintendo' OR category='Wii' OR category='DS' OR category='2DS' OR category='3DS')";
+                            $page_query2 = mysqli_query($con,"SELECT * FROM articledata WHERE $cats AND $type ORDER BY id DESC $limit");
+                        }else if($cat_value == "PC"){
+                            $cats = "category='PC'";
+                            $page_query2 = mysqli_query($con,"SELECT * FROM articledata WHERE $cats AND $type ORDER BY id DESC $limit");
+                        }else if($cat_value == "Mobile"){
+                            $cats = "category='Mobile'";
+                            $page_query2 = mysqli_query($con,"SELECT * FROM articledata WHERE $cats AND $type ORDER BY id DESC $limit");
+                        }else if($cat_value == "Indie"){
+                            $cats = "category='Indie'";
+                            $page_query2 = mysqli_query($con,"SELECT * FROM articledata WHERE $cats AND $type ORDER BY id DESC $limit");
+                        }else{
+                            $page_query2 = mysqli_query($con,"SELECT * FROM articledata WHERE $type ORDER BY id DESC $limit");
+                        }
                         while($row = mysqli_fetch_array($page_query2, MYSQLI_ASSOC)){
                             $id = $row['id'];
                             $title = $row['title'];

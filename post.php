@@ -99,6 +99,7 @@
             $content4 = $_POST['content4'];
             
             $category = $_POST['category'];
+            $type = $_POST['type'];
             $firstimgcap = $_POST['image2cap'];
             $secondimgcap = $_POST['image3cap'];
             
@@ -127,9 +128,9 @@
                 }else{
                     
                     mysqli_query($con, 
-                            "INSERT INTO articledata (title, content, content2, content3, content4, creator, category, image1, image2, image3, image2cap, image3cap)
+                            "INSERT INTO articledata (title, content, content2, content3, content4, creator, category, image1, image2, image3, image2cap, image3cap, type)
                             VALUE('$title', '$content', '$content2', '$content3', '$content4', '$creator', '$category','$image',
-                            '$image2','$image3','$firstimgcap','$secondimgcap')"
+                            '$image2','$image3','$firstimgcap','$secondimgcap','$type')"
                     )or die(mysqli_error($con));
                     
                     
@@ -214,6 +215,12 @@
                                     
                                                 <option value="Indie">Indie</option>                                    
                                                 <option value="General">General</option>
+                                    
+                                                </select><br />
+                                    Type: <select name="type">
+                                                <option value="News">News</option>
+                                                <option value="Review">Review</option>
+                
                                     
                                                 </select><br />
                                 </div>

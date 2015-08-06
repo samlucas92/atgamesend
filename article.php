@@ -69,16 +69,16 @@
                         <a href="news.php">News</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#reviews">Reviews</a>
+                        <a href="reviews.php">Reviews</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#videos">Videos</a>
+                        <a href="videos.php">Videos</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="podcast">Podcast</a>
+                        <a href="podcast.php">Podcast</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#contact">Contact</a>
+                        <a href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>

@@ -93,7 +93,7 @@
                                 <div class="panel-body">
                                     <a href="edit.php"><img src="img/edit26.png"></a> 
                                 </div>
-                                <div class="panel-footer"><label>Edit article</label></div>
+                                <div class="panel-footer"><label>Edit article (Will come with an update)</label></div>
                             </div>
                         </div>
 

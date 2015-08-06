@@ -17,6 +17,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,100italic,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -33,21 +34,15 @@
         </div>
         <div class="col-md-2" style="line-height:100px">
         </div>
-        <div class="col-md-2" style="line-height:100px">
+        <div class="col-md-6" style="margin-top:5%;">
+            <iframe src="http://rcm-eu.amazon-adsystem.com/e/cm?t=atgaen-21&o=2&p=48&l=ur1&category=pcvideogames&banner=0Y4QC1ZX3E6R7JMDKD82&f=ifr" 
+                    width="728" height="90" scrolling="no" border="0" marginwidth="0" style="border:none; " frameborder="0"></iframe>
 
         </div>
         <div class="col-md-2" style="line-height:100px">
 
         </div>
-        <div class="col-md-2" style="line-height:100px">
 
-        </div>
-        <div class="col-md-1" style="line-height:100px">
-            <a href="index.html"></a>
-        </div>
-        <div class="col-md-1" style="line-height:100px">
-            <a href="index.html"></a>
-        </div>
 
 
     </div>
@@ -74,24 +69,29 @@
                         <a href="news.php">News</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#reviews">Reviews</a>
+                        <a href="reviews.php">Reviews</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#videos">Videos</a>
+                        <a href="videos.php">Videos</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="podcast">Podcast</a>
+                        <a href="podcast.php">Podcast</a>
                     </li>
                     <li class="nav-item-after hvr-underline-reveal">
-                        <a href="#contact">Contact</a>
+                        <a href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
     </nav>
+
     <section class="content">
+        <div class="col-md-12">
+
         
+        </div>
+
         <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -154,6 +154,12 @@
                                 
                                 $older_page = ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'"><span aria-hidden="true">&larr;</span>Older articles ';
                             }
+                        }
+                        if($pagenum = 1){
+                            $older = 'pagination-prev';
+                        }
+                        if($pagenum == $last){
+                            $newer = 'pagination-prev'; 
                         }
                         $list = '';
                         while($row = mysqli_fetch_array($page_query2, MYSQLI_ASSOC)){
@@ -219,7 +225,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default side-content">
                 <div class="panel-body">
                     <table border="1" width="100%" style="text-align:center">
                     <tr><td class="title" colspan="2">AGE top 10</td></tr>
@@ -235,23 +241,64 @@
                     <tr><td class="cat-table content">10</td><td colspan="2" class="norm-table content">Game 10</td></tr>
 
                     </table>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
+                    <div class="advert">
+                        <iframe src="http://rcm-eu.amazon-adsystem.com/e/cm?t=atgaen-21&o=2&p=14&l=ur1&category=pcvideogames&banner=0W3AN9S2F9G41BWHFD02&f=ifr" 
+                                width="160" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>
         
     </section>
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>AtGames<span>End</span></h3>
+
+            <p class="footer-links">
+                <a href="index.php">Home</a>
+                ·
+                <a href="news.php">News</a>
+                ·
+                <a href="reviews.php">Reviews</a>
+                ·
+                <a href="videos.php">Videos</a>
+                ·
+                <a href="podcast.php">Podcast</a>
+                ·
+                <a href="contact.php">Contact</a>
+            </p>
+
+            <p class="footer-company-name">At Games End &copy; 2015</p>
+        </div>
+
+        <div class="footer-center">
+
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About AGE</span>
+                All your gaming news, reviews, videos and podcasts. We are always on the lookout for viewer articles visit the 
+                <a href="contact.php">Contact</a> page for more info.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
 </body>
 </html>
